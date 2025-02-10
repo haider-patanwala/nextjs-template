@@ -1,26 +1,51 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  .flexCenter {
-    @apply flex items-center justify-center;
-  }
+@theme {
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+}
 
-  .flexBetween {
-    @apply flex items-center justify-between;
-  }
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
 
-  .flexColBetween {
-    @apply flex flex-col items-start justify-between;
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
-  .flexColCenter {
-    @apply flex flex-col items-center justify-between;
-  }
-  .flexCol {
-    @apply flex flex-col items-start justify-start;
-  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility flexCenter {
+  @apply flex items-center justify-center;
+}
+
+@utility flexBetween {
+  @apply flex items-center justify-between;
+}
+
+@utility flexColBetween {
+  @apply flex flex-col items-start justify-between;
+}
+
+@utility flexColCenter {
+  @apply flex flex-col items-center justify-between;
+}
+
+@utility flexCol {
+  @apply flex flex-col items-start justify-start;
 }
